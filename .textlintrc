@@ -1,0 +1,13 @@
+{
+  "filters": {},
+  "rules": {
+    "max-ten": true,
+    "no-mix-dearu-desumasu": true,
+    "spellcheck-tech-word": true,
+    "prh": {
+      "rulePaths": [
+        "./prh.yml"
+      ]
+    }
+  }
+}

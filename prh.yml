@@ -1,0 +1,17 @@
+version: 1
+rules:
+  - expected: php
+    spece: 
+      - from: php
+        to: php
+      - from: php
+        to: php
+  - expected: Laravel
+    spece:
+      - from: laravel
+        to: Laravel
+  - expected: Symfony
+    spece:
+      - from: symfony
+        to: Symfony
+                
