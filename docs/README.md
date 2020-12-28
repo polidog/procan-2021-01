@@ -27,7 +27,7 @@
 | Laravel | 8系 | 
 
 
-## Dockerについて
+### Dockerについて
 
 今回は実行環境用のDockerを用意しています。  
 必要に応じて使っていただければと思います。
@@ -37,6 +37,10 @@
 いくつか本があると思いますが、Qiitaのこの記事はいいかなぁと思います。
 
 [Laravel入門 - 使い方チュートリアル](https://qiita.com/sano1202/items/6021856b70e4f8d3dc3d)
+
+### なぜnodejsが必要なのか？
+昨今のアプリケーションはJavaScriptのビルドやSCSSからCSSへの変換などに対応するためにwebpackなどを利用することが多いです。
+Laravelでもフロントエンド関連に関してはwebpack(Laravel mix)を使っているのでnodejsが必要になってしまいます。
 
 
 ## 進め方について
