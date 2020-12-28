@@ -4,15 +4,15 @@ githubのxxxに上がっているソースコードをチェックアウトし�
 ※今回は`~/src/github.com/ptyhard/xxx` にソースコードを配置することを想定しています。 
 
 ```bash
-$ mkdir -p ~/src/github.com/ptyhard
-$ cd ~/src/github.com/ptyhard
-$ git clone https://github.com/ptyhard/xxx.git
+$ mkdir -p ~/src/github.com/polidog/procan-2020-01-code
+$ cd ~/src/github.com/polidog/procan-2020-01-code
+$ git clone https://github.com/polidog/procan-2020-01-code.git
 ```
 
 ソースコードを入手したら次はdockerを使って実際にプログラムを動かしてみましょう。
 
 ```
-$ cd ~/src/github.com/ptyhard
+$ cd ~/src/github.com/polidog/procan-2020-01-code
 $ docker-compose up -d
 ```
 
