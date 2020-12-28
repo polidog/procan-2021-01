@@ -14,4 +14,4 @@ rules:
     spece:
       - from: symfony
         to: Symfony
-                
+  

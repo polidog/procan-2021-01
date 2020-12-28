@@ -1,13 +1,25 @@
-## 課題のソースコードの動かし方
+## 開発環境について
 
-githubのxxxに上がっているソースコードをチェックアウトしてきてください。  
-※今回は`~/src/github.com/ptyhard/xxx` にソースコードを配置することを想定しています。 
+
+github上にひな形となるコードを用意してあります。  
+[procan-2021-01-code](https://github.com/polidog/procan-2021-01-code)
+
+基本的には `laravel new` で生成した雛形のコード + docker-composeの設定を用意しただけのものになります。 
+
+
+## ソースコードのチェックアウト
+
+今回は `~/procan-2020-01-code` のディレクトリで作業をしていくという想定で進めていきます。  
+必要に応じて読み替えてください。
+
 
 ```bash
-$ mkdir -p ~/src/github.com/polidog/procan-2020-01-code
-$ cd ~/src/github.com/polidog/procan-2020-01-code
+$ mkdir -p ~/procan-2020-01-code
+$ cd ~/procan-2020-01-code
 $ git clone https://github.com/polidog/procan-2020-01-code.git
 ```
+
+## まずは動かしてみる
 
 ソースコードを入手したら次はdockerを使って実際にプログラムを動かしてみましょう。
 
@@ -16,30 +28,7 @@ $ cd ~/src/github.com/polidog/procan-2020-01-code
 $ docker-compose up -d
 ```
 
-Dockerが無事に起動したことを確認したら、[http://localhost:8000](http://localhost:8000) にアクセスして動いていることを確認してください。
+Dockerが無事に起動したことを確認したら、[http://localhost:8000](http://localhost:8000) にアクセスして動いていることを確認してください。  
+アクセス成功すると以下のページが表示されるかと思います。
 
-
-## windowsでの環境構築について
-
-https://docs.microsoft.com/ja-jp/windows/wsl/install-win10
-
-
-## 仕様
-
-今回はソーシャルゲームのガチャを作ります。
-仕様に関しては以下の通り。
-
-- ユーザーはログインをすることが出来る
-- ガチャを引くと特定のモンスターを一つ取得することが出来る
-- 取得したモンスターはマイボックスに格納される
-- 10個のアイテムから一つを選定する
-- 選定するには確率があり、各アイテムに出現率が設定されている
-- 確率は0 ~ 10で表現される
-- アイテムはガチャごとセットする
-- ユーザーのポイントを消費する
-- 初回無料で引ける
-- 1日1回無料でガチャを引くことが出来る。
-- リセットは朝の4時
-- フレンドポイントでガチャを引くことが出来る
-- マイボックは最大10体までモンスターを入れることができる
-- マイボックスがいっぱいになったらモンスターを捨てることができる
+![](/images/image1.png)

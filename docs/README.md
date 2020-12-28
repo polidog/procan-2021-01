@@ -32,6 +32,14 @@
 今回は実行環境用のDockerを用意しています。  
 必要に応じて使っていただければと思います。
 
+正確にはdocker-composeを利用するのでマシンにdocker for mac or docker for Windowsをいれていただければと思います。
+
+MacへのDockerのインストール方法  
+https://docs.docker.jp/docker-for-mac/install.html
+
+WindowsへのDockerのインストール方法
+https://docs.docker.jp/docker-for-windows/install.html
+
 
 ### Laravelの学習について
 いくつか本があると思いますが、Qiitaのこの記事はいいかなぁと思います。

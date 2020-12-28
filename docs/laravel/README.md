@@ -1,4 +1,4 @@
-# Step0: Laravelについて
+# Laravelについて
 
 今回はWebフレームワークにLaravelを使います。
 採用した理由は、下記のとおりです。
