@@ -1,4 +1,4 @@
-## Step3: テスト駆動開発
+## テスト駆動開発
 
 「ソフトウェアのテストを書きましょう」という人はたくさんいます。
 でもどうやって書くかや、ソフトウェアテストについて説明してくれる人って意外と少ない気がします。
@@ -47,7 +47,7 @@ https://www.youtube.com/watch?v=Q-FJ3XmFlT8
 $ docker-compose exec php php artisan test
 ```
 
-ユニットテストだけを実装する場合
+ユニットテストだけを実行する場合
 
 ```shell
 $ docker-compose exec php php artisan test tests/Unit          
@@ -67,4 +67,5 @@ $ docker-compose exec php php artisan make:test UserTest --unit
 機能テストはちょっと大変な側面もあるので今回はユニットテストだけを書くようにします。  
 本来の開発ではしっかりと機能テストも書きます。
 
+TDDに正しく準拠しているわけではなく、TDDになるべく近いかたちでテストを書いていきます。
 
