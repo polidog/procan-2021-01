@@ -2,11 +2,11 @@
 
 まずは今回の仕様を再確認しましょう。
 
-{％ include "../spec/spec.md" ％}
+{% include "../spec/spec.md" %}
 
 このうちstep4では以下の部分を実装します。
 
-{％ include "../spec/base_spec.md" ％}
+{% include "../spec/base_spec.md" %}
 
 ## まずはモデルをコードに落とし込もう
 
@@ -179,7 +179,7 @@ $ docker-compose exec php php artisan test tests/Unit/Gacha/GachaTest.php
 
 ## 仕様を整理してTODOリストを作る
 
-{％ include "../spec/base_spec.md" ％}
+{% include "../spec/base_spec.md" %}
 
 この言葉からTODOリストを考えてみましょう。
 

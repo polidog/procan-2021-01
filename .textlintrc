@@ -1,5 +1,9 @@
 {
-  "filters": {},
+  "filters": {
+    "allowlist": {
+      "allow": ["%"]
+    }
+  },
   "rules": {
     "max-ten": true,
     "no-mix-dearu-desumasu": true,

@@ -14,4 +14,7 @@ rules:
     spece:
       - from: symfony
         to: Symfony
-  
+  - expected: parcent
+    spece:
+      - from: ％
+        to: "%"
