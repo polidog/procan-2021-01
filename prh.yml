@@ -18,3 +18,10 @@ rules:
     spece:
       - from: ％
         to: "%"
+  - expected: web
+    spece:
+      - from: web
+        to: web
+      - from: WEB
+        to: web
+      

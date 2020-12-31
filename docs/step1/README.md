@@ -204,8 +204,8 @@ Route::middleware('auth')->group(function (): void {
 
 ## おすすめ書籍
 
-- 体系的に学ぶ 安全なWebアプリケーションの作り方
-- Webを支える技術 -HTTP、URI、HTML、そしてREST (WEB+DB PRESS plus)
+- 体系的に学ぶ 安全なwebアプリケーションの作り方
+- webを支える技術 -HTTP、URI、HTML、そしてREST (web+DB PRESS plus)
 
 
 ## 余談: JWT認証について
