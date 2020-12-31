@@ -8,3 +8,4 @@
 * [Step2: オブジェクト指向とはなにか？ ~ ガチャの仕組みから考える ~](./step2/README.md)
 * [Step3: テスト駆動開発について](./step3/README.md)
 * [Step4: ガチャを実装しよう](./step4/README.md)
+* [Step5: データベースと連携しよう](./step5/README.md)
