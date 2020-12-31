@@ -9,3 +9,4 @@
 * [Step3: テスト駆動開発について](./step3/README.md)
 * [Step4: ガチャを実装しよう](./step4/README.md)
 * [Step5: データベースと連携しよう](./step5/README.md)
+* [Step6: webブラウザで動くようにしよう](./step6/README.md)
