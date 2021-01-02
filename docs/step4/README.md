@@ -559,6 +559,9 @@ class Gacha
 
     public function addPrize(Prize $prize): void
     {
+        if ($this->hasPrizes()) {
+            throw new \Exception('景品の上限を超えています')
+        }
         $this->prizes[] = $prize;
     }
 
