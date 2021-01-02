@@ -452,9 +452,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Gacha extends Model
 {
-    private const MAX_PRIZE = 10;
-
     use HasFactory;
+    private const MAX_PRIZE = 10;
 
     /**
      * @return Item
