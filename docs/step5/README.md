@@ -297,7 +297,7 @@ class Gacha extends Model
 $ docker-compose exec php php artisan test tests/Unit/Models/GachaTest.php
 ```
 
-## 実際にロジックを実装する
+## drawメソッドを実装する
 
 step4で実装した `App\Gacha\Gacha` クラスの実装を移していきます。  
 Eloquentにあわせて少し実装を変更していますが、ほぼ一緒になります。
@@ -386,9 +386,124 @@ class GachaTest extends TestCase
 }
 ```
 
-## addPrizeを実装する
+## addPrize, hasPrizesを実装する
 
+こちらもまずはテストから追加しましょう。
 
+```php
+<?php declare(strict_types=1);
+
+namespace Tests\Unit\Models;
+
+use App\Models\Gacha;
+use App\Models\Item;
+use App\Models\Prize;
+use Tests\TestCase;
+
+class GachaTest extends TestCase
+{
+    /**
+     * A basic unit test example.
+     */
+    public function testDraw(): void
+    {
+        /** @var Gacha $gacha */
+        $gacha = Gacha::first();
+        $item = $gacha->draw();
+
+        self::assertTrue($item->id > 0);
+        self::assertTrue($item->id < 11);
+    }
+
+    public function testAddPrize(): void
+    {
+        $gacha = new Gacha();
+        $gacha->name = 'test';
+        $gacha->save();
+
+        $item = Item::first();
+
+        $prize = new Prize();
+        $prize->probability = 1;
+        $prize->item()->associate($item);
+
+        $gacha->addPrize($prize);
+        self::assertSame(1, $gacha->prizes()->count('id'));
+    }
+}
+```
+
+次に各メソッドを実装していきます。
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Gacha
+ *
+ * @property string $name
+ * @property Collection $prizes
+ */
+class Gacha extends Model
+{
+    private const MAX_PRIZE = 10;
+
+    use HasFactory;
+
+    /**
+     * @return Item
+     * @throws \Exception
+     */
+    public function draw(): Item
+    {
+        $totalProbability = $this->prizes->reduce(static function (int $ac, Prize $prize) {
+            return $ac + $prize->probability;
+        }, 0);
+
+        $boundary = random_int(1, $totalProbability);
+        $countPriority = 0;
+
+        foreach ($this->prizes as $prize) {
+            $countPriority += $prize->probability;
+
+            if ($boundary <= $countPriority) {
+                return $prize->item;
+            }
+        }
+
+        throw new \RuntimeException('item not found.');
+    }
+
+    /**
+     * @param Prize $prize
+     * @throws \Exception
+     */
+    public function addPrize(Prize $prize): void
+    {
+        if ($this->hasPrizes()) {
+            throw new \Exception('景品の上限を超えています');
+        }
+        $prize->gacha()->associate($this);
+        $this->prizes()->save($prize);
+    }
+
+    public function hasPrizes(): bool
+    {
+        return $this->prizes()->count('id') === self::MAX_PRIZE;
+    }
+
+    public function prizes()
+    {
+        return $this->hasMany(Prize::class);
+    }
+}
+```
 
 
 これでEloquentのモデルの中にロジックを実装することができ、データベースとの連携ができました。
