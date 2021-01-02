@@ -201,7 +201,99 @@ $ docker-compose exec php php artisan migrate
 
 ## データを用意する
 
-Seederを使って初期値(データ)を用意します。
+まずはファクトリを用意します。
+
+```shell
+$ docker-compose exec php php artisan make:factory PrizeFactory
+$ docker-compose exec php php artisan make:factory ItemFactory
+$ docker-compose exec php php artisan make:factory GachaFactory
+```
+
+それぞれのファクトリを修正します。
+
+```php
+<?php declare(strict_types=1);
+// database/factories/PrizeFactory.php
+
+namespace Database\Factories;
+
+use App\Models\Prize;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class PrizeFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Prize::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
+    {
+        return [
+            'probability' => $this->faker->numberBetween(1, 10),
+        ];
+    }
+}
+```
+
+```php
+<?php declare(strict_types=1);
+// database/factories/ItemFactory.php
+
+namespace Database\Factories;
+
+
+use App\Models\Item;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class ItemFactory extends Factory
+{
+    protected $model = Item::class;
+
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name
+        ];
+    }
+
+}
+
+```
+
+```php
+<?php declare(strict_types=1);
+// database/factories/ItemFactory.php
+
+
+namespace Database\Factories;
+
+use App\Models\Gacha;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class GachaFactory extends Factory
+{
+    protected $model = Gacha::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => '通常ガチャ',
+        ];
+    }
+}
+```
+
+
+次にSeederを使って初期値(データ)を用意します。
 
 ```php
 <?php declare(strict_types=1);
