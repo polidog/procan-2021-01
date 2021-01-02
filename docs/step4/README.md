@@ -283,7 +283,7 @@ class Gacha
     /**
      * @var Prize[]
      */
-    private $prizes;
+    private $prizes = [];
 
     public function draw(): Item
     {
@@ -317,7 +317,7 @@ class Gacha
     /**
      * @var Prize[]
      */
-    private $prizes;
+    private $prizes = [];
 
     public function draw(): Item
     {
@@ -338,6 +338,7 @@ class Gacha
 ```
 
 テストを実行して問題がなければ、次に `hasPrizes` を実装しましょう。
+上限を超えていた場合は `addPrize` 実行時にエラーにしたので`addPrize`も同時に修正します。
 
 ```php
 <?php declare(strict_types=1);
@@ -352,7 +353,7 @@ class Gacha
     /**
      * @var Prize[]
      */
-    private $prizes;
+    private $prizes = [];
 
     public function draw(): Item
     {
@@ -361,6 +362,9 @@ class Gacha
 
     public function addPrize(Prize $prize): void
     {
+        if ($this->hasPrizes()) {
+            throw new \Exception('景品の上限を超えています')
+        }
         $this->prizes[] = $prize;
     }
 

@@ -120,3 +120,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 ```
 
 後はブラウザで [http://localhost/gacha](http://localhost/gacha) にアクセスすればガチャがひけるようになります。
+
+![](/images/image11.png)
+![](/images/image12.png)
