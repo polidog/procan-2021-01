@@ -10,3 +10,4 @@
 * [Step4: ガチャを実装しよう](./step4/README.md)
 * [Step5: データベースと連携しよう](./step5/README.md)
 * [Step6: ブラウザで動くようにしよう](./step6/README.md)
+* [Step7: アイテムボックスを実装しよう](./step7/README.md) 

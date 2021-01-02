@@ -24,4 +24,7 @@ rules:
         to: web
       - from: WEB
         to: web
-      
+  - expected: コケる
+    spece:
+      - from: コケる
+        to: 失敗する
