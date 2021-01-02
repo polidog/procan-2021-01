@@ -45,7 +45,7 @@ class GachaController extends Controller
 次にそれぞれのコントローラのメソッドに対応するviewを作成します。
 
 まずは `resources/views/gacha/index.blade.php` から作ります。
-```blade
+```
 @extends('layouts.app')
 
 @section('content')
@@ -70,7 +70,7 @@ class GachaController extends Controller
 
 次に `resources/views/gacha/exec.blade.php` から作ります。
 
-```blade
+```
 @extends('layouts.app')
 
 @section('content')
