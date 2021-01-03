@@ -20,7 +20,8 @@ O/Rマッパとはオブジェクトリレーショナルマッピングと呼�
 データモデル
 ![](/images/image10.jpg)
 
-この図を見ればわかると思いますが、大体一緒なんですよね。  
+上記２つの図はほぼ一緒の形に成っています。
+つまりデータモデル・オブジェクトモデルの乖離がなく、Eloquentのモデルを使っても同じような実装ができます。
 (もちろんデータモデルとオブジェクトモデルが乖離することも結構あります)
 
 ## オブジェクトのモデルと、データモデルをどう連携させるか？
@@ -62,7 +63,7 @@ $ docker-compose exec php php artisan make:model Item -m
 $ docker-compose exec php php artisan make:model Prize -m 
 ```
 
-`-m` オプションをつける理由はマイグレーションファイルも同時に生成するために付けています。
+`-m` オプションをつける理由はマイグレーションファイルも同時に生成するため付けています。
 
 ### マイグレーションとは？
 データベースの構造を管理するためのツールです。
@@ -70,7 +71,7 @@ $ docker-compose exec php php artisan make:model Prize -m
 
 ## マイグレーションファイルに定義を記述する
 
-`database/migrations` にマイグレーションファイルが生成されているかと思います。
+`database/migrations` にマイグレーションファイルが生成されます。
 
 - xxxxx_create_gachas_table.php
 - xxxxx_create_items_table.php

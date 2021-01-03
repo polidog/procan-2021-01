@@ -1,0 +1,5 @@
+{
+  "textlint.configPath": ".textlintrc",
+  "textlint.autoFixOnSave": true,
+  "textlint.trace": "verbose"
+}

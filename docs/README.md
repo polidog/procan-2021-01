@@ -27,12 +27,17 @@
 | Laravel | 8系 | 
 
 
+## 使うPCについて
+
+今回は基本的にMacで操作することを前提に記述しています。  
+Windowsの場合は適切に読み替えてください。
+
 ### Dockerについて
 
 今回は実行環境用のDockerを用意しています。  
-必要に応じて使っていただければと思います。
+必要に応じて使ってください。
 
-正確にはdocker-composeを利用するのでマシンにdocker for mac or docker for Windowsをいれていただければと思います。
+正確にはdocker-composeを利用するのでマシンにdocker for mac or docker for Windowsを入れてください。
 
 MacへのDockerのインストール方法  
 https://docs.docker.jp/docker-for-mac/install.html
@@ -42,9 +47,8 @@ https://docs.docker.jp/docker-for-windows/install.html
 
 
 ### Laravelの学習について
-いくつか本があると思いますが、Qiitaのこの記事はいいかなぁと思います。
-
-[Laravel入門 - 使い方チュートリアル](https://qiita.com/sano1202/items/6021856b70e4f8d3dc3d)
+Laravelは書籍・ネットの記事が多く学びやすいフレームワークです。
+[Laravel入門 - 使い方チュートリアル](https://qiita.com/sano1202/items/6021856b70e4f8d3dc3d)は網羅的に記述されており、わかりやすいです。
 
 ### なぜnodejsが必要なのか？
 昨今のアプリケーションはJavaScriptのビルドやSCSSからCSSへの変換などに対応するためにwebpackなどを利用することが多いです。
@@ -73,4 +77,4 @@ Laravelでもフロントエンド関連に関してはwebpack(Laravel mix)を�
 - エンタープライズアプリケーションアーキテクチャパターン
 - マルチパラダイムデザイン
 - ジェネレーティブプログラミング
-
+- テスト駆動開発
