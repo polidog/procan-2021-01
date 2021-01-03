@@ -625,3 +625,196 @@ class GachaController extends Controller
     </div>
 @endsection
 ```
+
+### ItemBoxのページも実装しよう
+
+まずは`make`コマンドでコントローラを生成します。
+
+```shell
+$ docker-compose exec php php artisan make:Controller ItemBoxController
+```
+
+生成されたコードを修正してきます。
+
+```php
+<?php declare(strict_types=1);
+// app/Http/Controllers/ItemBoxController.php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\Service\ItemBoxService;
+use Illuminate\Support\Facades\Auth;
+
+class ItemBoxController extends Controller
+{
+    /**
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Exception
+     */
+    public function index()
+    {
+        $itemBoxService = $this->createItemBox();
+
+        return view('itemBox.index', [
+            'items' => $itemBoxService->getItems(),
+        ]);
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function remove(int $id): \Illuminate\Http\RedirectResponse
+    {
+        $itemBoxService = $this->createItemBox();
+        $itemBoxService->remove($id);
+        return redirect()->route('itemBox');
+    }
+
+    private function createItemBox(): ItemBoxService
+    {
+        $user = Auth::user();
+
+        if (!$user instanceof User) {
+            throw new \Exception('user not found');
+        }
+        return new ItemBoxService($user);
+    }
+}
+```
+
+次にview用のファイルを用意します。
+`reousrces/views/inteBox/index.blade.php`
+
+```php
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">アイテムボックス</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach ($items as $item)
+                                <div class="col-sm-6" style="margin-top: 14px;">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $item->item->name }}</h5>
+                                            <a href="{{ route('itemBoxRemove', $item->id) }}" class="btn btn-danger">削除する</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ url('/gacha') }}" class="btn btn-primary btn-block">ガチャへ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+```
+
+ついでにgachaのviewファイルにもアイテムボックスへのリンクを貼ります。
+
+`resources/views/gacha/index.blade.php`
+
+```php
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ $gacha->name }}</div>
+
+                    <div class="card-body">
+                        <div style="width: 100%">
+                            <img src="https://1.bp.blogspot.com/-sZbaFXJ4y0A/UnyGKAJjwbI/AAAAAAAAacE/RYDWRq73Hsc/s800/gachagacha.png" style="width: 100%; text-align: center"/>
+                        </div>
+                        @if ($isFull)
+                            <div><a class="btn btn-primary btn-block disabled">ガチャを引く</a></div>
+                        @else
+                            <div><a href="{{ url('/gacha', $gacha->id) }}" class="btn btn-primary btn-block">ガチャを引く</a></div>
+                        @endif
+                        <div style="margin-top: 15px;"><a href="{{ url('/itemBox') }}" class="btn btn-primary btn-block">アイテムボックスへ</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+```
+
+`resources/views/gacha/index.blade.php`
+
+```php
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">ガチャ結果</div>
+
+                    <div class="card-body">
+                        <div style="text-align: center">
+                            <img src="https://4.bp.blogspot.com/-F5qE4XwBojQ/V5NDtjF5RzI/AAAAAAAA8d0/2zxTHdEKxlQufC6UkcDc_-cdi7DUfBdwgCLcB/s250/capsule_close1_red.png" />
+                        </div>
+                        <div style="text-align: center">
+                            「{{ $item->name }}」を取得しました!!!!
+                        </div>
+                        <a href="{{ url('/gacha') }}" class="btn btn-primary btn-block">戻る</a>
+                        <a href="{{ url('/itemBox') }}" class="btn btn-primary btn-block">アイテムボックスへ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+```
+
+そしてルーティングを設定します。
+
+
+```php
+<?php declare(strict_types=1);
+// routes/web.php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::middleware('auth')->group(function (): void {
+    Route::get('/gacha', [\App\Http\Controllers\GachaController::class, 'index']);
+    Route::get('/gacha/{id}', [\App\Http\Controllers\GachaController::class, 'exec']);
+    Route::get('/itemBox', [\App\Http\Controllers\ItemBoxController::class, 'index'])->name('itemBox');
+    Route::get('/itemBox/{id}/remove', [\App\Http\Controllers\ItemBoxController::class, 'remove'])->name('itemBoxRemove');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+```
+
+これで[http://localhost/itemBox](http://localhost/itemBox)にアクセスすればアイテムボックスが表示されます。
+
+![](/images/image16.png)
+![](/images/image17.png)
