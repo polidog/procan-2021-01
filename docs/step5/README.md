@@ -596,7 +596,6 @@ class Gacha extends Model
 }
 ```
 
-
 これでEloquentのモデルの中にロジックを実装でき、データベースとの連携ができました。
 
 
