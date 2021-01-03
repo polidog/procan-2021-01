@@ -33,6 +33,7 @@
     "gitbook-summary-to-path": "^1.1.0",
     "honkit": "^3.6.14",
     "textlint-filter-rule-allowlist": "^2.0.1",
-    "textlint-filter-rule-comments": "^1.2.2"
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-preset-ja-technical-writing": "^4.0.1"
   }
 }

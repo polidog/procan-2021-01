@@ -4,7 +4,7 @@
 github上にひな形となるコードを用意してあります。  
 [procan-2021-01-code](https://github.com/polidog/procan-2021-01-code)
 
-基本的には `laravel new` で生成した雛形のコード + docker-composeの設定を用意しただけのものになります。 
+基本的には `laravel new` で生成した雛形のコード + docker-composeの設定を用意しただけのものになります。
 
 
 ## ソースコードのチェックアウト

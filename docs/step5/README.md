@@ -62,7 +62,7 @@ $ docker-compose exec php php artisan make:model Item -m
 $ docker-compose exec php php artisan make:model Prize -m 
 ```
 
-`-m` オプションをつける理由はマイグレーションファイルも同時に生成するために付けています。 
+`-m` オプションをつける理由はマイグレーションファイルも同時に生成するために付けています。
 
 ### マイグレーションとは？
 データベースの構造を管理するためのツールです。
@@ -597,7 +597,7 @@ class Gacha extends Model
 ```
 
 
-これでEloquentのモデルの中にロジックを実装することができ、データベースとの連携ができました。
+これでEloquentのモデルの中にロジックを実装でき、データベースとの連携ができました。
 
 
 
