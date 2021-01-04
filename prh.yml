@@ -28,3 +28,7 @@ rules:
     spece:
       - from: コケる
         to: 失敗する
+  - expected: GitHub
+    spece:
+      - from: github
+        to: GitHub
