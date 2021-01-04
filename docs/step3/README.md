@@ -39,7 +39,7 @@ https://www.youtube.com/watch?v=Q-FJ3XmFlT8
 
 ## Laravelのテストについて
 
-基本的には `tests/Feature` or `tests/Unit` のディレクトリにテストを配置していけばテストが出来る。
+基本的には `tests/Feature` or `tests/Unit` のディレクトリにテストを配置していけばテストができます。
 実行するには artisanコマンドを使います。
 
 
