@@ -28,7 +28,7 @@ $ cd ~/src/github.com/polidog/procan-2021-01-code
 $ docker-compose up -d
 ```
 
-Dockerが無事に起動したことを確認したら、[http://localhost:8000](http://localhost:8000) にアクセスして動いていることを確認してください。  
+Dockerが無事に起動したことを確認したら、[http://localhost](http://localhost) にアクセスして動いていることを確認してください。  
 アクセス成功すると以下のページが表示されます。
 
 ![](/images/image1.png)
