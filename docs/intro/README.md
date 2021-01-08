@@ -25,7 +25,11 @@ $ git clone https://github.com/polidog/procan-2021-01-code.git ./
 
 ```
 $ cd ~/procan-2021-01-code
+$ cp .env.example .env
 $ docker-compose up -d
+$ docker-compose exec php composer install
+$ docker-compose exec php php artisan key:generate
+$ docker-compose exec php php artisan cache:clear
 ```
 
 Dockerが無事に起動したことを確認したら、[http://localhost](http://localhost) にアクセスして動いていることを確認してください。  
