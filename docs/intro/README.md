@@ -16,7 +16,7 @@ GitHub上にひな形となるコードを用意してあります。
 ```bash
 $ mkdir -p ~/procan-2021-01-code
 $ cd ~/procan-2021-01-code
-$ git clone https://github.com/polidog/procan-2021-01-code.git
+$ git clone https://github.com/polidog/procan-2021-01-code.git ./
 ```
 
 ## まずは動かしてみる
@@ -24,7 +24,7 @@ $ git clone https://github.com/polidog/procan-2021-01-code.git
 ソースコードを入手したら次はdockerを使って実際にプログラムを動かしてみましょう。
 
 ```
-$ cd ~/src/github.com/polidog/procan-2021-01-code
+$ cd ~/procan-2021-01-code
 $ docker-compose up -d
 ```
 
