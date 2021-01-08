@@ -9,14 +9,14 @@ GitHub上にひな形となるコードを用意してあります。
 
 ## ソースコードのチェックアウト
 
-今回は `~/procan-2020-01-code` のディレクトリで作業をしていくという想定で進めていきます。  
+今回は `~/procan-2021-01-code` のディレクトリで作業をしていくという想定で進めていきます。  
 必要に応じて読み替えてください。
 
 
 ```bash
-$ mkdir -p ~/procan-2020-01-code
-$ cd ~/procan-2020-01-code
-$ git clone https://github.com/polidog/procan-2020-01-code.git
+$ mkdir -p ~/procan-2021-01-code
+$ cd ~/procan-2021-01-code
+$ git clone https://github.com/polidog/procan-2021-01-code.git ./
 ```
 
 ## まずは動かしてみる
@@ -24,11 +24,15 @@ $ git clone https://github.com/polidog/procan-2020-01-code.git
 ソースコードを入手したら次はdockerを使って実際にプログラムを動かしてみましょう。
 
 ```
-$ cd ~/src/github.com/polidog/procan-2020-01-code
+$ cd ~/procan-2021-01-code
+$ cp .env.example .env
 $ docker-compose up -d
+$ docker-compose exec php composer install
+$ docker-compose exec php php artisan key:generate
+$ docker-compose exec php php artisan cache:clear
 ```
 
-Dockerが無事に起動したことを確認したら、[http://localhost:8000](http://localhost:8000) にアクセスして動いていることを確認してください。  
+Dockerが無事に起動したことを確認したら、[http://localhost](http://localhost) にアクセスして動いていることを確認してください。  
 アクセス成功すると以下のページが表示されます。
 
 ![](/images/image1.png)
