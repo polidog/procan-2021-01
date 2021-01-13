@@ -79,6 +79,40 @@ $ docker-compose exec php php artisan make:model Prize -m
 
 それぞれ編集していきましょう。
 
+## 生成されたモデルの修正
+
+PrizeモデルにはDBのリレーションの設定が必要になります。
+下記のように修正しましょう。
+
+
+```php
+<?php
+
+namespace App\Models;
+// app/Models/Prize.php
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Prize extends Model
+{
+    use HasFactory;
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
+
+    public function gacha()
+    {
+        return $this->belongsTo(Gacha::class, 'gacha_id');
+    }
+}
+```
+
+
+
+
 
 ```php
 <?php
@@ -210,6 +244,8 @@ $ docker-compose exec php php artisan make:factory ItemFactory
 $ docker-compose exec php php artisan make:factory GachaFactory
 ```
 
+### ファクトリの修正
+
 それぞれのファクトリを修正します。
 
 ```php
@@ -292,6 +328,9 @@ class GachaFactory extends Factory
     }
 }
 ```
+
+
+### Seederの設定
 
 
 次にSeederを使って初期値(データ)を用意します。
