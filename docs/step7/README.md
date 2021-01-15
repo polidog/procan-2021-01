@@ -29,7 +29,7 @@
 図で表すと、上記になります。
 
 「ユーザー」という言葉は記述がありませんが、暗黙的に入っています。
-これは、アイテムボックスというのは自然に**「誰かが保持している」 **　ということを想像できるかという理由でユーザーという概念も図にしています。  
+これは、アイテムボックスというのは自然に**「誰かが保持している」**ということを想像できるかという理由でユーザーという概念も図にしています。  
 ソフトウェア開発の現場では、こういった「暗黙的な概念」が必ず潜んでいます。仕様には書ききれない部分を発見するための努力はどの現場でも必要になります。
 
 ## メソッドになりそうな候補を探す
@@ -275,11 +275,10 @@ class CreateItemBoxesTable extends Migration
     {
         Schema::create('item_boxes', function (Blueprint $table): void {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('item_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->smallInteger('max_items');
             $table->timestamps();
         });
     }
@@ -316,7 +315,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemBox extends Model
 {
-    use HasFactory
+    use HasFactory;
 
     public function user()
     {
@@ -342,14 +341,17 @@ class ItemBox extends Model
 
 namespace Tests\Unit\Models;
 
-use App\Gacha\ItemBoxService;
 use App\Models\Gacha;
 use App\Models\Item;
 use App\Models\Prize;
+use App\Service\ItemBoxService;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Tests\TestCase;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * A basic unit test example.
      */
@@ -457,6 +459,84 @@ class ItemBoxService
     public function isFull(): bool
     {
         return ItemBox::where('user_id', $this->user->id)->count() >= self::MAX_ITEMS;
+    }
+}
+```
+
+## そしてガチャを引いたらアイテムボックスに入る処理を実装します。
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Models;
+
+use App\Service\ItemBoxService;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Gacha
+ *
+ * @property string $name
+ * @property Collection $prizes
+ */
+class Gacha extends Model
+{
+    use HasFactory;
+    private const MAX_PRIZE = 10;
+
+    /**
+     * @return Item
+     * @throws \Exception
+     */
+    public function draw(ItemBoxService $itemBoxService): Item
+    {
+        if ($itemBoxService->isFull()) {
+            throw new \Exception('アイテムボックスがいっぱいです');
+        }
+
+        $totalProbability = $this->prizes->reduce(static function (int $ac, Prize $prize) {
+            return $ac + $prize->probability;
+        }, 0);
+
+        $boundary = random_int(1, $totalProbability);
+        $countPriority = 0;
+
+        foreach ($this->prizes as $prize) {
+            $countPriority += $prize->probability;
+
+            if ($boundary <= $countPriority) {
+                $item = $prize->item;
+                $itemBoxService->add($item);
+                return $item;
+            }
+        }
+
+        throw new \RuntimeException('item not found.');
+    }
+
+    /**
+     * @param Prize $prize
+     * @throws \Exception
+     */
+    public function addPrize(Prize $prize): void
+    {
+        if ($this->hasPrizes()) {
+            throw new \Exception('景品の上限を超えています');
+        }
+        $prize->gacha()->associate($this);
+        $this->prizes()->save($prize);
+    }
+
+    public function hasPrizes(): bool
+    {
+        return $this->prizes()->count('id') === self::MAX_PRIZE;
+    }
+
+    public function prizes()
+    {
+        return $this->hasMany(Prize::class);
     }
 }
 ```
@@ -686,7 +766,7 @@ class ItemBoxController extends Controller
 ```
 
 次にview用のファイルを用意します。
-`reousrces/views/inteBox/index.blade.php`
+`reousrces/views/itemBox/index.blade.php`
 
 ```php
 @extends('layouts.app')
@@ -753,7 +833,7 @@ class ItemBoxController extends Controller
 @endsection
 ```
 
-`resources/views/gacha/index.blade.php`
+`resources/views/gacha/exec.blade.php`
 
 ```php
 @extends('layouts.app')

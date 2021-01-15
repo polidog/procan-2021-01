@@ -95,9 +95,11 @@ namespace Tests\Unit\Gacha;
 use App\Gacha\Gacha;
 use App\Gacha\Item;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
     /**
      * A basic unit test example.
      *
@@ -118,12 +120,12 @@ class GachaTest extends TestCase
 $ docker-compose exec php php artisan test tests/Unit/Gacha/GachaTest.php  
 
    FAIL  Tests\Unit\Gacha\GachaTest
-  ⨯ example
+  ⨯ draw
 
   ---
 
-  • Tests\Unit\Gacha\GachaTest > example
-   TypeError 
+  • Tests\Unit\Gacha\GachaTest > draw
+   TypeError
 
   Return value of App\Gacha\Gacha::draw() must be an instance of App\Gacha\Item, none returned
 
@@ -226,9 +228,11 @@ use App\Gacha\Gacha;
 use App\Gacha\Item;
 use App\Gacha\Prize;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
     /**
      * A basic unit test example.
      */
@@ -360,7 +364,7 @@ class Gacha
     public function addPrize(Prize $prize): void
     {
         if ($this->hasPrizes()) {
-            throw new \Exception('景品の上限を超えています')
+            throw new \Exception('景品の上限を超えています');
         }
         $this->prizes[] = $prize;
     }
@@ -470,9 +474,11 @@ use App\Gacha\Gacha;
 use App\Gacha\Item;
 use App\Gacha\Prize;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
 
     public function testDraw(): void
     {
@@ -528,7 +534,7 @@ class Gacha
     /**
      * @var Prize[]
      */
-    private $prizes;
+    private $prizes = [];
 
     /**
      * @return Item
@@ -556,7 +562,7 @@ class Gacha
     public function addPrize(Prize $prize): void
     {
         if ($this->hasPrizes()) {
-            throw new \Exception('景品の上限を超えています')
+            throw new \Exception('景品の上限を超えています');
         }
         $this->prizes[] = $prize;
     }
@@ -580,9 +586,11 @@ use App\Gacha\Gacha;
 use App\Gacha\Item;
 use App\Gacha\Prize;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
 
     public function testDraw(): void
     {
