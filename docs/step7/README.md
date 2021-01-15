@@ -341,10 +341,10 @@ class ItemBox extends Model
 
 namespace Tests\Unit\Models;
 
-use App\Gacha\ItemBoxService;
 use App\Models\Gacha;
 use App\Models\Item;
 use App\Models\Prize;
+use App\Service\ItemBoxService;
 use Tests\TestCase;
 
 class GachaTest extends TestCase

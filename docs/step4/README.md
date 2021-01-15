@@ -528,7 +528,7 @@ class Gacha
     /**
      * @var Prize[]
      */
-    private $prizes;
+    private $prizes = [];
 
     /**
      * @return Item
