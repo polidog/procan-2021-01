@@ -118,12 +118,12 @@ class GachaTest extends TestCase
 $ docker-compose exec php php artisan test tests/Unit/Gacha/GachaTest.php  
 
    FAIL  Tests\Unit\Gacha\GachaTest
-  ⨯ example
+  ⨯ draw
 
   ---
 
-  • Tests\Unit\Gacha\GachaTest > example
-   TypeError 
+  • Tests\Unit\Gacha\GachaTest > draw
+   TypeError
 
   Return value of App\Gacha\Gacha::draw() must be an instance of App\Gacha\Item, none returned
 

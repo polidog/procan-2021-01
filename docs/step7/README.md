@@ -29,7 +29,7 @@
 図で表すと、上記になります。
 
 「ユーザー」という言葉は記述がありませんが、暗黙的に入っています。
-これは、アイテムボックスというのは自然に**「誰かが保持している」 **　ということを想像できるかという理由でユーザーという概念も図にしています。  
+これは、アイテムボックスというのは自然に**「誰かが保持している」**ということを想像できるかという理由でユーザーという概念も図にしています。  
 ソフトウェア開発の現場では、こういった「暗黙的な概念」が必ず潜んでいます。仕様には書ききれない部分を発見するための努力はどの現場でも必要になります。
 
 ## メソッドになりそうな候補を探す
@@ -686,7 +686,7 @@ class ItemBoxController extends Controller
 ```
 
 次にview用のファイルを用意します。
-`reousrces/views/inteBox/index.blade.php`
+`reousrces/views/itemBox/index.blade.php`
 
 ```php
 @extends('layouts.app')
@@ -753,7 +753,7 @@ class ItemBoxController extends Controller
 @endsection
 ```
 
-`resources/views/gacha/index.blade.php`
+`resources/views/gacha/exec.blade.php`
 
 ```php
 @extends('layouts.app')
