@@ -316,7 +316,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemBox extends Model
 {
-    use HasFactory
+    use HasFactory;
 
     public function user()
     {
