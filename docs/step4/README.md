@@ -95,9 +95,11 @@ namespace Tests\Unit\Gacha;
 use App\Gacha\Gacha;
 use App\Gacha\Item;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
     /**
      * A basic unit test example.
      *
@@ -226,9 +228,11 @@ use App\Gacha\Gacha;
 use App\Gacha\Item;
 use App\Gacha\Prize;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
     /**
      * A basic unit test example.
      */
@@ -470,9 +474,11 @@ use App\Gacha\Gacha;
 use App\Gacha\Item;
 use App\Gacha\Prize;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
 
     public function testDraw(): void
     {
@@ -580,9 +586,11 @@ use App\Gacha\Gacha;
 use App\Gacha\Item;
 use App\Gacha\Prize;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
 
     public function testDraw(): void
     {

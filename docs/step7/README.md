@@ -345,10 +345,13 @@ use App\Models\Gacha;
 use App\Models\Item;
 use App\Models\Prize;
 use App\Service\ItemBoxService;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Tests\TestCase;
 
 class GachaTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * A basic unit test example.
      */
