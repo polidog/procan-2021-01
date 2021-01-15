@@ -275,11 +275,10 @@ class CreateItemBoxesTable extends Migration
     {
         Schema::create('item_boxes', function (Blueprint $table): void {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('item_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->smallInteger('max_items');
             $table->timestamps();
         });
     }
