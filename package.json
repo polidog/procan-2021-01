@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d _book",
     "serve": "honkit serve",
-    "lint": "textlint"
+    "lint": "textlint",
+    "build": "honkit build"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,27 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: setup tools
+        run: npm install -g firebase-tools yarn
+      
+      - name: install
+        run: yarn
+      
+      - name: build
+        run: yarn build
+
+      - name: deploy
+        run: firebase deploy --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
