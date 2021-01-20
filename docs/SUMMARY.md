@@ -11,3 +11,4 @@
 * [Step5: データベースと連携しよう](./step5/README.md)
 * [Step6: ブラウザで動くようにしよう](./step6/README.md)
 * [Step7: アイテムボックスを実装しよう](./step7/README.md) 
+* [Step8: 新たな機能を付け足してみよう](./step8/README.md)
