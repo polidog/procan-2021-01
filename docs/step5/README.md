@@ -308,7 +308,7 @@ class ItemFactory extends Factory
 
 ```php
 <?php declare(strict_types=1);
-// database/factories/ItemFactory.php
+// database/factories/GachaFactory.php
 
 
 namespace Database\Factories;
